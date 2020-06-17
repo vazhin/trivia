@@ -4,42 +4,38 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/css/foundation.min.css"
-    integrity="sha256-ogmFxjqiTMnZhxCqVmcqTvjfe1Y/ec4WaRj/aQPvn+I=" crossorigin="anonymous">
   <link rel="stylesheet" href="./css/style.css">
-  <title>Document</title>
+  <title>trivia quiz</title>
 </head>
 
 <body>
-  <div class="app">
-    <div class="q-card">
-      <div class="q-body">
-        <p class="q-number">
-          Question <span id="q-number">2</span>
-        </p>
-        <div class="the-q" id="the-question">
-
-        </div>
-        <div class="choices-container">
-          <button class="choices-btn">
-            <span class="choice-char">A</span>
-            <p id="choice-1"></p>
-          </button>
-          <button class="choices-btn">
-            <span class="choice-char">B</span>
-            <p id="choice-2"></p>
-          </button>
-          <button class="choices-btn">
-            <span class="choice-char">C</span>
-            <p id="choice-3"></p>
-          </button>
-          <button class="choices-btn">
-            <span class="choice-char">D</span>
-            <p id="choice-4"></p>
-          </button>
-        </div>
+  <div class="home">
+    <div class="home-top-section">
+      <h1 class="home-heading hidden">Take a trivia quiz</h1>
+      <div class="quiz-category-container">
+        <label for="category">Select a category:</label>
+        <select name="category" id="category" class="category-selector">
+          <option value="0">Any category</option>
+          <option value="9">General Knowledge</option>
+          <option value="18">Computers</option>
+          <option value="19">Mathematics</option>
+          <option value="21">Sports</option>
+          <option value="23">History</option>
+          <option value="24">Politics</option>
+          <option value="11">Film</option>
+          <option value="10">Books</option>
+          <option value="25">Art</option>
+          <option value="31">Japanese Anime & Manga</option>
+          <option value="15">Video Games</option>
+          <option value="12">Music</option>
+          <option value="26">Celebrities</option>
+        </select>
       </div>
     </div>
+    <div class="home-bottom-section">
+      <button class="next-btn" id="next-btn">Let's go!</button>
+    </div>
+
   </div>
 
   <script src="./app/index.js"></script>
