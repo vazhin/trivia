@@ -11,10 +11,10 @@
 <body>
   <div class="home">
     <div class="home-top-section">
-      <h1 class="home-heading hidden">Take a trivia quiz</h1>
-      <div class="quiz-category-container">
+      <h1 class="home-heading" id="home-heading">Take a trivia quiz</h1>
+      <div class="quiz-category-container hidden" id="quiz-category-container">
         <label for="category">Select a category:</label>
-        <select name="category" id="category" class="category-selector">
+        <select name="category" id="category-selector" class="category-selector">
           <option value="0">Any category</option>
           <option value="9">General Knowledge</option>
           <option value="18">Computers</option>
@@ -33,7 +33,7 @@
       </div>
     </div>
     <div class="home-bottom-section">
-      <button class="next-btn" id="next-btn">Let's go!</button>
+      <a href="#" id="quiz-link"><button class="next-btn" id="next-btn">Go to quiz</button></a>
     </div>
 
   </div>

@@ -1,3 +1,9 @@
+let nextBtn = document.querySelector('#next-btn')
+let homeHeading = document.querySelector('#home-heading')
+let categoryContainer = document.querySelector('#quiz-category-container')
+let quizLink = document.querySelector('#quiz-link')
+let categorySelector = document.querySelector('#category-selector')
+
 class Question {
   constructor(questionObj, id) {
     this.id = id
@@ -62,3 +68,34 @@ function getRandomIntInclusive(min, max) {
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+  let categoryChosen;
+
+  clicked = 0;
+  nextBtn.addEventListener('click', () => {
+    if (clicked === 0) {
+      homeHeading.style.cssText = "animation: swoosh 0.7s ease-in-out forwards;";
+      nextBtn.style.cssText = "animation: swoosh 0.8s ease-in-out forwards;"
+      setTimeout(removeElements, 900)
+
+      function removeElements() {
+        homeHeading.classList.add('hidden')
+        nextBtn.classList.add('green-btn')
+        nextBtn.style.cssText = "animation: none;"
+        nextBtn.textContent = "Let's go!"
+        categoryContainer.classList.remove('hidden')
+      }
+      clicked = 1;
+    }
+    else if (clicked === 1) {
+      quizLink.setAttribute('href', './quiz.html');
+    }
+  })
+
+  categorySelector.addEventListener('change', (e) => {
+    categoryChosen = Number(e.target.value);
+  })
+
+})
+

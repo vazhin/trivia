@@ -100,6 +100,7 @@ body {
   position: relative;
   padding: 5px;
   outline: none;
+  border: none;
 }
 
 .choices-btn:hover {
@@ -209,8 +210,6 @@ body {
   font-size: 4rem;
   font-weight: 300;
   margin-left: 0px;
-  -webkit-animation: swoosh 0.7s ease-in-out;
-          animation: swoosh 0.7s ease-in-out;
 }
 
 .next-btn {
@@ -223,8 +222,6 @@ body {
   outline: none;
   -webkit-transition: bottom 3s ease-in;
   transition: bottom 3s ease-in;
-  -webkit-animation: swoosh 1s ease-in-out;
-          animation: swoosh 1s ease-in-out;
 }
 
 .next-btn:hover {

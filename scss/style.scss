@@ -48,11 +48,13 @@ body {
   @include flexCenter(row, center);
   width: 70%;
   height: 50px;
-  box-shadow: $shadow;
+  box-shadow: 0px 0px 1px 0.5px $grey;
+  ;
   border-radius: 10px;
   position: relative;
   padding: 5px;
   outline: none;
+  border: none;
 
   &:hover {
     cursor: pointer;
@@ -112,7 +114,7 @@ body {
 }
 
 .home {
-  @include flexCenter(column,center);
+  @include flexCenter(column, center);
   @include fullPage();
 }
 
@@ -128,7 +130,6 @@ body {
   font-size: 4rem;
   font-weight: 300;
   margin-left: 0px;
-  animation: swoosh 0.7s ease-in-out;
 }
 
 .next-btn {
@@ -140,12 +141,12 @@ body {
   background-color: $yellow;
   outline: none;
   transition: bottom 3s ease-in;
+
   &:hover {
     cursor: pointer;
     bottom: 3px;
     box-shadow: 0px 2px 0px 0px $grey;
   }
-  animation: swoosh 1s ease-in-out;
 }
 
 @keyframes swoosh {
@@ -153,13 +154,16 @@ body {
     margin-left: 0;
     opacity: 1;
   }
+
   25% {
     margin-left: 25px;
     opacity: 1;
   }
+
   50% {
     margin-left: -1200;
   }
+
   100% {
     margin-left: -1200;
     opacity: 0;
@@ -170,6 +174,7 @@ body {
   .home-heading {
     font-size: 3rem;
   }
+
   .next-btn {
     padding: 12px;
     font-size: 1.3rem;
@@ -194,6 +199,7 @@ body {
   font-family: inherit;
   outline: none;
   font-size: 0.95rem;
+
   &:hover {
     cursor: pointer;
   }
