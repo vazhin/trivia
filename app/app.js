@@ -1,8 +1,11 @@
+let categoryChosen;
 let nextBtn = document.querySelector('#next-btn')
 let homeHeading = document.querySelector('#home-heading')
 let categoryContainer = document.querySelector('#quiz-category-container')
 let quizLink = document.querySelector('#quiz-link')
 let categorySelector = document.querySelector('#category-selector')
+let quizUI = document.querySelector('#quiz-app')
+let homeUI = document.querySelector('#home-UI')
 
 class Question {
   constructor(questionObj, id) {
@@ -14,10 +17,20 @@ class Question {
     this.incorrect_answers = questionObj.incorrect_answers
   }
 
-  static getQuestions() {
-    return fetch('https://opentdb.com/api.php?amount=50&type=multiple')
-      .then(response => response.json())
-      .then(object => object.results.map((question, index) => new Question(question, index)))
+  static getQuestions(category) {
+
+    if (!category) {
+      return fetch('https://opentdb.com/api.php?amount=10&type=multiple')
+        .then(response => response.json())
+        .then(object => object.results.map((question, index) => new Question(question, index)))
+        .catch(error => console.log(error))
+    }
+    else {
+      return fetch(`https://opentdb.com/api.php?amount=10&category=${category}&type=multiple`)
+        .then(response => response.json())
+        .then(object => object.results.map((question, index) => new Question(question, index)))
+        .catch(error => console.log(error))
+    }
   }
 
   static renderQuestion(theQuestion) {
@@ -25,20 +38,7 @@ class Question {
     let questionArea = document.querySelector('#the-question')
     questionArea.innerText = theQuestion.question.replace(/&quot;+/gm, '"').replace(/&#039;+/gm, "'")
   }
-
 }
-
-Question.getQuestions()
-  .then(questions => {
-    questions.forEach(question => {
-      Question.renderQuestion(question) //this is rendering all but showing one//////////
-      let arrOfAnswers = []
-      arrOfAnswers.push(new Answer(question.correct_answer, true))
-      question.incorrect_answers.forEach(answer => arrOfAnswers.push(new Answer(answer, false)))
-      Answer.render(...arrOfAnswers)
-    })
-  })
-  .catch(error => console.log(error))
 
 class Answer {
   constructor(answer, isCurrect) {
@@ -69,16 +69,34 @@ function getRandomIntInclusive(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+function fetchQuestions() {
+  Question.getQuestions()
+    .then(questions => {
+      questions.forEach(question => {
+        Question.renderQuestion(question) //this is rendering all but showing one//////////
+        let arrOfAnswers = []
+        arrOfAnswers.push(new Answer(question.correct_answer, true))
+        question.incorrect_answers.forEach(answer => arrOfAnswers.push(new Answer(answer, false)))
+        Answer.render(...arrOfAnswers)
+      })
+    })
+    .catch(error => console.log(error))
+}
+
+function animateElements(func, element) {
+  element.style.cssText = "animation: swoosh 0.7s ease-in-out forwards;";
+  nextBtn.style.cssText = "animation: swoosh 0.8s ease-in-out forwards;"
+  setTimeout(func, 900)
+}
+
 document.addEventListener('DOMContentLoaded', () => {
-  let categoryChosen;
 
   clicked = 0;
-  nextBtn.addEventListener('click', () => {
-    if (clicked === 0) {
-      homeHeading.style.cssText = "animation: swoosh 0.7s ease-in-out forwards;";
-      nextBtn.style.cssText = "animation: swoosh 0.8s ease-in-out forwards;"
-      setTimeout(removeElements, 900)
+  nextBtn.addEventListener('click', (e) => {
+    e.preventDefault()
 
+    if (clicked === 0) {
+      animateElements(removeElements, homeHeading)
       function removeElements() {
         homeHeading.classList.add('hidden')
         nextBtn.classList.add('green-btn')
@@ -89,13 +107,18 @@ document.addEventListener('DOMContentLoaded', () => {
       clicked = 1;
     }
     else if (clicked === 1) {
-      quizLink.setAttribute('href', './quiz.html');
+      animateElements(removeElements, categoryContainer)
+      fetchQuestions()
+      function removeElements() {
+        homeUI.classList.add('hidden')
+        quizUI.classList.remove('hidden')
+      }
+      clicked = 0;
     }
   })
 
   categorySelector.addEventListener('change', (e) => {
     categoryChosen = Number(e.target.value);
   })
-
 })
 
