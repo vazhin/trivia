@@ -75,7 +75,7 @@ body {
       -ms-flex-direction: column;
           flex-direction: column;
   width: 100%;
-  height: 50%;
+  height: 55%;
   -webkit-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
 }
@@ -100,18 +100,13 @@ body {
           box-shadow: 0px 0px 1px 0.5px #D8D8D8;
   border-radius: 10px;
   position: relative;
-  padding: 5px;
+  padding: 4px;
   outline: none;
   border: none;
 }
 
 .choices-btn:hover {
   cursor: pointer;
-  background-color: #04BF8A;
-}
-
-.choices-btn:hover p {
-  color: white;
 }
 
 .choices-btn:hover .choice-char {
@@ -310,16 +305,18 @@ body {
 }
 
 .red-btn {
-  background-color: #F20505;
-  color: white;
+  border: solid 2px #F20505;
 }
 
 #next-Q-btn {
   position: relative;
-  font-size: 1.15rem;
-  background-color: #F2CF1D;
+  font-size: 1.1rem;
+  background-color: #F27781;
   -webkit-box-shadow: none;
           box-shadow: none;
+  opacity: 1;
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
 }
 
 #next-Q-btn:hover {
@@ -329,25 +326,7 @@ body {
           box-shadow: 0px 2px 0px 0px #D8D8D8;
 }
 
-@-webkit-keyframes appear {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes appear {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-.changeHeight {
-  height: 60% !important;
+.zero-opacity {
+  opacity: 0 !important;
 }
 /*# sourceMappingURL=style.css.map */

@@ -162,7 +162,7 @@ document.addEventListener('DOMContentLoaded', () => {
           let childNodes = [...e.target.childNodes]
           let answer = childNodes.find(node => node.nodeName === 'P')
           let isItTrue = Answer.checkAnswer(answer.textContent)
-          choicesChar.forEach(element => element.remove())
+          choicesChar.forEach(element => element.classList.add('hidden'))
           showResult(isItTrue, e.target)
           setTimeout(showNextQuestionBtn, 600)
         }
@@ -206,20 +206,18 @@ function findCurrectAnswer() {
 function showCurrectAnswer() {
   let theCurrectAnswer = findCurrectAnswer()
   let allChoices = [...choicesBtn]
-  let theCurrectChoice = allChoices.find(element => element.childNodes[2].textContent === theCurrectAnswer)
+  let theCurrectChoice = allChoices.find(element => element.childNodes[3].textContent === theCurrectAnswer)
   theCurrectChoice.classList.add('green-btn')
 }
 
 function showNextQuestionBtn() {
-  nextQBtn.classList.remove('hidden')
-  nextQBtn.style.cssText = 'animation: appear 0.5s ease-in-out forwards;'
-  choicesContainer.classList.add('changeHeight')
+  nextQBtn.classList.remove('zero-opacity')
 }
 
 function resetForNewQ() {
-  nextQBtn.classList.add('hidden')
-  choicesContainer.classList.remove('changeHeight')
+  nextQBtn.classList.add('zero-opacity')
   result.innerHTML = ''
+  choicesChar.forEach(element => element.classList.remove('hidden'))
   let allChoices = [...choicesBtn]
   allChoices.forEach(element => {
     if (element.classList.contains('green-btn')) {
