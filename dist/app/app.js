@@ -27,6 +27,17 @@ let theAnswers = []
 let answerChosen = false;
 let points = 0;
 
+function fetchQuestions(category) {
+  resetForNewQ()
+  Question.getQuestions(category)
+    .then(questions => {
+      listOfQuestions = [...questions]
+      Question.renderQuestions(questions, 0)
+      Qnumber.textContent = '1'
+    })
+    .catch(error => console.log(error))
+}
+
 class Question {
   constructor(questionObj, id) {
     this.id = id
@@ -243,14 +254,4 @@ function animateElements(func, element) {
   element.style.cssText = "animation: swoosh 0.7s ease-in-out forwards;";
   nextBtn.style.cssText = "animation: swoosh 0.8s ease-in-out forwards;";
   setTimeout(func, 900)
-}
-
-function fetchQuestions(category) {
-  Question.getQuestions(category)
-    .then(questions => {
-      listOfQuestions = [...questions]
-      Question.renderQuestions(questions, 0)
-      Qnumber.textContent = '1'
-    })
-    .catch(error => console.log(error))
 }
