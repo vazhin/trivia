@@ -22,6 +22,7 @@ let currentId = 0;
 let currentQ;
 let theAnswers = []
 let answerChosen = false;
+let points = 0;
 
 
 
@@ -173,17 +174,18 @@ document.addEventListener('DOMContentLoaded', () => {
   })
 
   nextQBtn.addEventListener('click', () => {
-    if (currentId === 9){
-      console.log('finished') //////////////////////////// show result page!!!!!!!!!!!!!
+    if (currentId === 9) {
+      console.log('finished', points) //////////////////////////// show result page!!!!!!!!!!!!!
     }
-    currentId++;
+    Question.goToNextQuestion()
     Qnumber.textContent = `${currentId + 1}`
-    Question.renderQuestions(listOfQuestions, currentId)
+    resetForNewQ()
   })
 })
 
 function showResult(isItTrue, theChoice) {
   if (isItTrue === true) {
+    points++
     theChoice.classList.add('green-btn')
     result.innerText = 'Currect'
     result.style.cssText = 'color: #04BF8A; font-weight: 400 !important;'
@@ -212,6 +214,20 @@ function showNextQuestionBtn() {
   nextQBtn.classList.remove('hidden')
   nextQBtn.style.cssText = 'animation: appear 0.5s ease-in-out forwards;'
   choicesContainer.classList.add('changeHeight')
+}
+
+function resetForNewQ() {
+  nextQBtn.classList.add('hidden')
+  choicesContainer.classList.remove('changeHeight')
+  result.innerHTML = ''
+  let allChoices = [...choicesBtn]
+  allChoices.forEach(element => {
+    if (element.classList.contains('green-btn')) {
+      element.classList.remove('green-btn')
+    } else if (element.classList.contains('red-btn')) {
+      element.classList.remove('red-btn')
+    }
+  })
 }
 
 
