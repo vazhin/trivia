@@ -329,4 +329,55 @@ body {
 .zero-opacity {
   opacity: 0 !important;
 }
+
+.result-page {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  font-weight: 300;
+}
+
+.result-page div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: 22%;
+}
+
+.result-page div h2 {
+  font-size: 3rem;
+  font-weight: inherit;
+}
+
+.result-page div h3 {
+  font-size: 1.5rem;
+}
+
+#play-again-btn {
+  background-color: #18298C;
+  color: white;
+  font-weight: inherit;
+  font-size: 1.15rem;
+}
 /*# sourceMappingURL=style.css.map */

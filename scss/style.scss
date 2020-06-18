@@ -216,3 +216,30 @@ body {
 .zero-opacity {
   opacity: 0 !important;
 }
+
+.result-page {
+  @include flexCenter(column, space-evenly);
+  @include fullPage();
+  font-weight: 300;
+}
+
+.result-page div{
+  @include flexCenter(column, space-around);
+  height: 22%;
+}
+
+.result-page div h2 {
+  font-size: 3rem;
+  font-weight: inherit;
+}
+
+.result-page div h3 {
+  font-size: 1.5rem;
+}
+
+#play-again-btn {
+  background-color: $darkBlue;
+  color: white;
+  font-weight: inherit;
+  font-size: 1.15rem;
+}

@@ -15,6 +15,8 @@ let choicesBtn = document.querySelectorAll('.choices-btn')
 let result = document.querySelector('#result')
 let Qnumber = document.querySelector('#q-number')
 let nextQBtn = document.querySelector('#next-Q-btn')
+let resultHeading = document.querySelector('#result-heading')
+let resultPage = document.querySelector('#result-page')
 let choicesContainer = document.querySelector('#choices-container')
 let arrOfChoices = [choice1, choice2, choice3, choice4]
 let listOfQuestions = []
@@ -23,21 +25,6 @@ let currentQ;
 let theAnswers = []
 let answerChosen = false;
 let points = 0;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 class Question {
   constructor(questionObj, id) {
@@ -173,13 +160,17 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   })
 
-  nextQBtn.addEventListener('click', () => {
+  nextQBtn.addEventListener('click', () => { //////////////////////////////////////////////////////////////////
     if (currentId === 9) {
-      console.log('finished', points) //////////////////////////// show result page!!!!!!!!!!!!!
+      console.log('finished', points)
+      quizUI.classList.add('hidden')
+      resultPage.classList.remove('hidden')
+      resultHeading.innerText = `your points ${points}`
+    } else {
+      Question.goToNextQuestion()
+      Qnumber.textContent = `${currentId + 1}`
+      resetForNewQ()
     }
-    Question.goToNextQuestion()
-    Qnumber.textContent = `${currentId + 1}`
-    resetForNewQ()
   })
 })
 
@@ -227,33 +218,6 @@ function resetForNewQ() {
     }
   })
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 function shuffle(array) {
   let currentIndex = array.length, temp, randomIndex;
