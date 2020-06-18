@@ -1,0 +1,23 @@
+{
+  "name": "trivia",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "deploy": "gh-pages -d dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vazhin/trivia.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vazhin/trivia/issues"
+  },
+  "homepage": "https://vazhin.github.io/trivia",
+  "dependencies": {
+    "gh-pages": "^3.0.0"
+  }
+}
