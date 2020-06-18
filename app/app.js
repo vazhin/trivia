@@ -96,18 +96,7 @@ class Answer {
   }
 }
 
-function fetchQuestions(category) {
-  Question.getQuestions(category)
-    .then(questions => {
-      listOfQuestions = [...questions]
-      Question.renderQuestions(questions, 0)
-      Qnumber.textContent = '1'
-    })
-    .catch(error => console.log(error))
-}
-
 document.addEventListener('DOMContentLoaded', () => {
-
   clicked = 0;
   nextBtn.addEventListener('click', (e) => {
     e.preventDefault()
@@ -256,3 +245,12 @@ function animateElements(func, element) {
   setTimeout(func, 900)
 }
 
+function fetchQuestions(category) {
+  Question.getQuestions(category)
+    .then(questions => {
+      listOfQuestions = [...questions]
+      Question.renderQuestions(questions, 0)
+      Qnumber.textContent = '1'
+    })
+    .catch(error => console.log(error))
+}
