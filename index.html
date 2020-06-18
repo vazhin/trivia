@@ -42,12 +42,12 @@
     <div class="q-card">
       <div class="q-body">
         <p class="q-number">
-          Question <span id="q-number">2</span> of 10
+          Question <span id="q-number"></span> of 10 <span id="result"></span>
         </p>
         <div class="the-q" id="the-question">
 
         </div>
-        <div class="choices-container">
+        <div class="choices-container" id="choices-container">
           <button class="choices-btn">
             <span class="choice-char">A</span>
             <p id="choice-1"></p>
@@ -64,6 +64,7 @@
             <span class="choice-char">D</span>
             <p id="choice-4"></p>
           </button>
+          <button class="choices-btn hidden" id="next-Q-btn">Next Question</button>
         </div>
       </div>
     </div>

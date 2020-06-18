@@ -6,6 +6,37 @@ let quizLink = document.querySelector('#quiz-link')
 let categorySelector = document.querySelector('#category-selector')
 let quizUI = document.querySelector('#quiz-app')
 let homeUI = document.querySelector('#home-UI')
+let choice1 = document.querySelector('#choice-1')
+let choice2 = document.querySelector('#choice-2')
+let choice3 = document.querySelector('#choice-3')
+let choice4 = document.querySelector('#choice-4')
+let choicesChar = document.querySelectorAll('.choice-char')
+let choicesBtn = document.querySelectorAll('.choices-btn')
+let result = document.querySelector('#result')
+let Qnumber = document.querySelector('#q-number')
+let nextQBtn = document.querySelector('#next-Q-btn')
+let choicesContainer = document.querySelector('#choices-container')
+let arrOfChoices = [choice1, choice2, choice3, choice4]
+let listOfQuestions = []
+let currentId = 0;
+let currentQ;
+let theAnswers = []
+let answerChosen = false;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 class Question {
   constructor(questionObj, id) {
@@ -34,9 +65,23 @@ class Question {
   }
 
   static renderQuestion(theQuestion) {
-    console.log(theQuestion)
     let questionArea = document.querySelector('#the-question')
     questionArea.innerText = theQuestion.question.replace(/&quot;+/gm, '"').replace(/&#039;+/gm, "'")
+  }
+
+  static renderQuestions(questions, id) {
+    answerChosen = false;
+    currentQ = questions.find(question => question.id === id)
+    Question.renderQuestion(currentQ)
+    let arrOfAnswers = []
+    arrOfAnswers.push(new Answer(currentQ.correct_answer, true))
+    currentQ.incorrect_answers.forEach(answer => arrOfAnswers.push(new Answer(answer, false)))
+    Answer.render(...arrOfAnswers)
+  }
+
+  static goToNextQuestion() {
+    currentId++;
+    Question.renderQuestions(listOfQuestions, currentId)
   }
 }
 
@@ -47,46 +92,29 @@ class Answer {
   }
 
   static render(answer1, answer2, answer3, answer4) {
-
+    theAnswers = [answer1, answer2, answer3, answer4]
     let arrOfAnswers = [answer1.answer, answer2.answer, answer3.answer, answer4.answer]
-
-    let choice1 = document.querySelector('#choice-1')
-    let choice2 = document.querySelector('#choice-2')
-    let choice3 = document.querySelector('#choice-3')
-    let choice4 = document.querySelector('#choice-4')
-    let arrOfChoices = [choice1, choice2, choice3, choice4]
-    let randomIndex = getRandomIntInclusive(0, 3)
-
+    shuffle(arrOfChoices)
     for (let i = 0; i < 4; i++) {
-      arrOfChoices[i].textContent = arrOfAnswers[i]
+      arrOfChoices[i].textContent = arrOfAnswers[i].replace(/&quot;+/gm, '"').replace(/&#039;+/gm, "'")
     }
+  }
+
+  static checkAnswer(answer) {
+    let deFormattedAnswer = answer.replace(/"/gm, '&quot;').replace(/'/gm, "&#039;");
+    let theAnswer = theAnswers.find(element => element.answer === deFormattedAnswer)
+    return theAnswer.currect
   }
 }
 
-function getRandomIntInclusive(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-function fetchQuestions() {
-  Question.getQuestions()
+function fetchQuestions(category) {
+  Question.getQuestions(category)
     .then(questions => {
-      questions.forEach(question => {
-        Question.renderQuestion(question) //this is rendering all but showing one//////////
-        let arrOfAnswers = []
-        arrOfAnswers.push(new Answer(question.correct_answer, true))
-        question.incorrect_answers.forEach(answer => arrOfAnswers.push(new Answer(answer, false)))
-        Answer.render(...arrOfAnswers)
-      })
+      listOfQuestions = [...questions]
+      Question.renderQuestions(questions, 0)
+      Qnumber.textContent = '1'
     })
     .catch(error => console.log(error))
-}
-
-function animateElements(func, element) {
-  element.style.cssText = "animation: swoosh 0.7s ease-in-out forwards;";
-  nextBtn.style.cssText = "animation: swoosh 0.8s ease-in-out forwards;"
-  setTimeout(func, 900)
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -108,10 +136,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     else if (clicked === 1) {
       animateElements(removeElements, categoryContainer)
-      fetchQuestions()
       function removeElements() {
         homeUI.classList.add('hidden')
         quizUI.classList.remove('hidden')
+      }
+      if (categoryChosen === 0) {
+        fetchQuestions()
+      } else {
+        fetchQuestions(categoryChosen)
       }
       clicked = 0;
     }
@@ -120,5 +152,109 @@ document.addEventListener('DOMContentLoaded', () => {
   categorySelector.addEventListener('change', (e) => {
     categoryChosen = Number(e.target.value);
   })
+
+  choicesBtn.forEach(element => {
+    element.addEventListener('click', (e) => {
+      if (answerChosen === false) {
+        if (e.target.nodeName === 'BUTTON') {
+          answerChosen = true;
+          let childNodes = [...e.target.childNodes]
+          let answer = childNodes.find(node => node.nodeName === 'P')
+          let isItTrue = Answer.checkAnswer(answer.textContent)
+          choicesChar.forEach(element => element.remove())
+          showResult(isItTrue, e.target)
+          setTimeout(showNextQuestionBtn, 600)
+        }
+      }
+      else {
+        return
+      }
+    })
+  })
+
+  nextQBtn.addEventListener('click', () => {
+    if (currentId === 9){
+      console.log('finished') //////////////////////////// show result page!!!!!!!!!!!!!
+    }
+    currentId++;
+    Qnumber.textContent = `${currentId + 1}`
+    Question.renderQuestions(listOfQuestions, currentId)
+  })
 })
+
+function showResult(isItTrue, theChoice) {
+  if (isItTrue === true) {
+    theChoice.classList.add('green-btn')
+    result.innerText = 'Currect'
+    result.style.cssText = 'color: #04BF8A; font-weight: 400 !important;'
+  } else {
+    theChoice.classList.add('red-btn')
+    result.innerText = 'Wrong'
+    result.style.cssText = 'color: #F20505; font-weight: 400 !important;'
+    showCurrectAnswer()
+  }
+}
+
+function findCurrectAnswer() {
+  let theCurrectAnswer = theAnswers.find(element => element.currect === true)
+  theCurrectAnswer = theCurrectAnswer.answer.replace(/&quot;+/gm, '"').replace(/&#039;+/gm, "'")
+  return theCurrectAnswer;
+}
+
+function showCurrectAnswer() {
+  let theCurrectAnswer = findCurrectAnswer()
+  let allChoices = [...choicesBtn]
+  let theCurrectChoice = allChoices.find(element => element.childNodes[2].textContent === theCurrectAnswer)
+  theCurrectChoice.classList.add('green-btn')
+}
+
+function showNextQuestionBtn() {
+  nextQBtn.classList.remove('hidden')
+  nextQBtn.style.cssText = 'animation: appear 0.5s ease-in-out forwards;'
+  choicesContainer.classList.add('changeHeight')
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function shuffle(array) {
+  let currentIndex = array.length, temp, randomIndex;
+  while (0 !== currentIndex) {
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+    temp = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temp;
+  }
+}
+
+function animateElements(func, element) {
+  element.style.cssText = "animation: swoosh 0.7s ease-in-out forwards;";
+  nextBtn.style.cssText = "animation: swoosh 0.8s ease-in-out forwards;"
+  setTimeout(func, 900)
+}
 
