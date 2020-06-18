@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="this is a trivia quiz game">
+  <link rel="stylesheet" href="./css/style.css">
+  <title>trivia</title>
+</head>
+
+<body>
+  <div class="home" id="home-UI">
+    <div class="home-top-section">
+      <h1 class="home-heading" id="home-heading">Take a trivia quiz</h1>
+      <div class="quiz-category-container hidden" id="quiz-category-container">
+        <label for="category">Select a category:</label>
+        <select name="category" id="category-selector" class="category-selector">
+          <option value="0">Any category</option>
+          <option value="9">General Knowledge</option>
+          <option value="18">Computers</option>
+          <option value="19">Mathematics</option>
+          <option value="21">Sports</option>
+          <option value="23">History</option>
+          <option value="24">Politics</option>
+          <option value="11">Film</option>
+          <option value="10">Books</option>
+          <option value="25">Art</option>
+          <option value="31">Japanese Anime & Manga</option>
+          <option value="15">Video Games</option>
+          <option value="12">Music</option>
+          <option value="26">Celebrities</option>
+        </select>
+      </div>
+    </div>
+    <div class="home-bottom-section">
+      <a href="#" id="quiz-link"><button class="next-btn" id="next-btn">Go to quiz</button></a>
+    </div>
+  </div>
+
+  <div class="app hidden" id="quiz-app">
+    <div class="q-card">
+      <div class="q-body">
+        <p class="q-number">
+          Question <span id="q-number"></span> of 10 <span id="result"></span>
+        </p>
+        <div class="the-q" id="the-question"></div>
+        <div class="choices-container" id="choices-container">
+          <button class="choices-btn">
+            <span class="choice-char">A</span>
+            <p id="choice-1"></p>
+          </button>
+          <button class="choices-btn">
+            <span class="choice-char">B</span>
+            <p id="choice-2"></p>
+          </button>
+          <button class="choices-btn">
+            <span class="choice-char">C</span>
+            <p id="choice-3"></p>
+          </button>
+          <button class="choices-btn">
+            <span class="choice-char">D</span>
+            <p id="choice-4"></p>
+          </button>
+          <button class="choices-btn zero-opacity" id="next-Q-btn">Next Question</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="result-page hidden" id="result-page">
+    <div>
+      <h2 id="result-heading"></h2>
+      <h3>wanna play again?</h3>
+    </div>
+    <button class="next-btn" id="play-again-btn">Play Again</button>
+  </div>
+
+  <script src="./app/app.js"></script>
+</body>
+
+</html>
