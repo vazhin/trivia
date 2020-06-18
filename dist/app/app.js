@@ -183,7 +183,6 @@ document.addEventListener('DOMContentLoaded', () => {
     answerChosen = false;
     points = 0;
   })
-
 })
 
 function whatsTheResult() {
