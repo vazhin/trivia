@@ -200,7 +200,7 @@ body {
 }
 
 .red-btn {
-  border: solid 2px #F20505;
+  border: solid 1.5px #F20505;
 }
 
 #next-Q-btn {
@@ -223,13 +223,13 @@ body {
   font-weight: 300;
 }
 
-.result-page div{
+.result-page div {
   @include flexCenter(column, space-around);
   height: 22%;
 }
 
 .result-page div h2 {
-  font-size: 3rem;
+  font-size: 2.6rem;
   font-weight: inherit;
 }
 

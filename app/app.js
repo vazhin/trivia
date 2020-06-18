@@ -17,6 +17,7 @@ let Qnumber = document.querySelector('#q-number')
 let nextQBtn = document.querySelector('#next-Q-btn')
 let resultHeading = document.querySelector('#result-heading')
 let resultPage = document.querySelector('#result-page')
+let playAgainBtn = document.querySelector('#play-again-btn')
 let choicesContainer = document.querySelector('#choices-container')
 let arrOfChoices = [choice1, choice2, choice3, choice4]
 let listOfQuestions = []
@@ -151,28 +152,47 @@ document.addEventListener('DOMContentLoaded', () => {
           let isItTrue = Answer.checkAnswer(answer.textContent)
           choicesChar.forEach(element => element.classList.add('hidden'))
           showResult(isItTrue, e.target)
-          setTimeout(showNextQuestionBtn, 600)
+          setTimeout(showNextQuestionBtn, 450)
         }
-      }
-      else {
-        return
       }
     })
   })
 
-  nextQBtn.addEventListener('click', () => { //////////////////////////////////////////////////////////////////
+  nextQBtn.addEventListener('click', () => {
     if (currentId === 9) {
-      console.log('finished', points)
       quizUI.classList.add('hidden')
       resultPage.classList.remove('hidden')
-      resultHeading.innerText = `your points ${points}`
+      whatsTheResult()
+      resetForNewQ()
     } else {
       Question.goToNextQuestion()
       Qnumber.textContent = `${currentId + 1}`
       resetForNewQ()
     }
   })
+
+  playAgainBtn.addEventListener('click', () => {
+    resultPage.classList.add('hidden')
+    homeUI.classList.remove('hidden')
+    categoryContainer.style.cssText = "animation: none;";
+    nextBtn.style.cssText = "animation: none;";
+    clicked = 1;
+    listOfQuestions = []
+    currentId = 0;
+    theAnswers = []
+    answerChosen = false;
+    points = 0;
+  })
+
 })
+
+function whatsTheResult() {
+  if (points >= 5) {
+    resultHeading.innerText = `your score was ${points} 😃🙌`
+  } else {
+    resultHeading.innerText = `your score was ${points} 😢`
+  }
+}
 
 function showResult(isItTrue, theChoice) {
   if (isItTrue === true) {
@@ -232,7 +252,7 @@ function shuffle(array) {
 
 function animateElements(func, element) {
   element.style.cssText = "animation: swoosh 0.7s ease-in-out forwards;";
-  nextBtn.style.cssText = "animation: swoosh 0.8s ease-in-out forwards;"
+  nextBtn.style.cssText = "animation: swoosh 0.8s ease-in-out forwards;";
   setTimeout(func, 900)
 }
 
