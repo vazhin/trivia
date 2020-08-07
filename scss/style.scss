@@ -1,0 +1,287 @@
+@import './variables';
+@import './mixins';
+@import url('https://fonts.googleapis.com/css2?family=Recursive&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Recursive', sans-serif;
+  font-weight: 400;
+  position: relative;
+  @include fullPage();
+  overflow: hidden !important;
+  background-image: url(./../img/bg.svg);
+  background-size: cover;
+}
+
+.app {
+  @include flexCenter(column, center);
+  @include fullPage();
+  overflow: hidden;
+}
+
+.q-card {
+  width: 420px;
+  height: 75%;
+  border-radius: 3px;
+  box-shadow: $shadow;
+  background-color: $grey;
+  @include flexCenter(column, center);
+  color: $light;
+}
+
+.q-body {
+  width: 100%;
+  height: 100%;
+  @include flexCenter(column, space-around);
+}
+
+.the-q {
+  margin: 0 15%;
+  height: 15%;
+  font-size: 1.2rem;
+}
+
+.choices-container {
+  @include flexCenter(column, space-evenly);
+  width: 100%;
+  height: 55%;
+  transition: all 0.5s ease-in-out;
+}
+
+.choices-btn {
+  @include flexCenter(row, center);
+  padding: 0.85rem;
+  width: 70%;
+  box-shadow: 0px 0px 1px 0.5px $grey;
+  border-radius: 3px;
+  position: relative;
+  outline: none;
+  border: none;
+  background-color: $light;
+  font-size: 1rem;
+  font-weight: normal;
+
+  &:hover {
+    cursor: pointer;
+
+    .choice-char {
+      animation: animate-chars 0.3s ease-out forwards;
+    }
+  }
+}
+
+.hidden {
+  display: none !important;
+}
+
+.home {
+  @include flexCenter(column, center);
+  @include fullPage();
+}
+
+.home-top-section {
+  border-radius: 3px;
+  box-shadow: $shadow;
+  background-color: $light;
+  @include flexCenter(column, center);
+  width: 40%;
+  height: 65%;
+  border: solid 1px $grey;
+}
+
+.home-bottom-section {
+  height: 5%;
+}
+
+.home-heading {
+  font-size: 4.5rem;
+  font-weight: 300;
+  margin-left: 0px;
+  margin-bottom: 100px;
+  color: $grey;
+}
+
+.next-btn {
+  padding: 1rem;
+  position: relative;
+  border: none;
+  border-radius: 3px;
+  font-size: 1.4rem;
+  background-color: $yellow;
+  color: $grey;
+  outline: none;
+  transition: bottom 3s ease-in;
+  box-shadow: 0px 2px 0px 0px $grey;
+  @include btnHover();
+}
+
+@keyframes swoosh {
+  0% {
+    margin-left: 0;
+    opacity: 1;
+  }
+
+  25% {
+    margin-left: 25px;
+    opacity: 1;
+  }
+
+  50% {
+    margin-left: -1200;
+  }
+
+  100% {
+    margin-left: -1200;
+    opacity: 0;
+  }
+}
+
+.quiz-category-container {
+  margin-bottom: 100px;
+  font-size: 1.7rem;
+  @include flexCenter(column, center);
+  width: 80%;
+}
+
+.quiz-category-container label {
+  color: $grey;
+  justify-self: start;
+}
+
+.category-selector {
+  width: 100%;
+  margin-top: 30px;
+  font-size: 1.2rem;
+  border-color: $grey;
+  background-color: $grey;
+  color: white;
+  border-radius: 3px;
+  padding: 5px;
+  font-family: inherit;
+  outline: none;
+  overflow: auto;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.green-btn {
+  background-color: #6effa9;
+}
+
+.red-btn {
+  background-color: $pink;
+}
+
+#next-Q-btn {
+  padding: 18px;
+  position: relative;
+  border: none;
+  border-radius: 3px;
+  background-color: $yellow;
+  outline: none;
+  @include btnHover();
+  font-size: 1.1rem;
+  opacity: 1;
+  transition: all 0.5s ease-in-out;
+}
+
+.zero-opacity {
+  opacity: 0 !important;
+}
+
+.result-page {
+  @include flexCenter(column, space-evenly);
+  @include fullPage();
+  font-weight: 300;
+}
+
+.result-page div {
+  border-radius: 3px;
+  box-shadow: $shadow;
+  background-color: $light;
+  @include flexCenter(column, center);
+  width: 40%;
+  height: 65%;
+  border: solid 1px $grey;
+}
+
+.result-page div h2 {
+  font-size: 2.6rem;
+  font-weight: inherit;
+  margin-bottom: 2rem;
+}
+
+.result-page div h3 {
+  font-size: 1.8rem;
+  margin-bottom: 5rem;
+  color: $grey;
+  font-weight: 300;
+}
+
+@media only screen and (max-width: 1200px) {
+  .home-top-section,
+  .result-page div {
+    width: 60%;
+  }
+  .q-card {
+    width: 60%;
+    height: 60%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .home-top-section,
+  .result-page div {
+    width: 85%;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .home-heading {
+    font-size: 2.9rem;
+    text-align: center;
+  }
+  .result-page div h2 {
+    font-size: 2rem;
+    text-align: center;
+  }
+
+  .result-page div h3 {
+    font-size: 1.2rem;
+  }
+  .next-btn {
+    padding: 0.8rem;
+    font-size: 1.1rem;
+  }
+  .home-top-section,
+  .result-page div {
+    width: 95%;
+  }
+  .q-card {
+    width: 95%;
+    height: 80%;
+  }
+  .quiz-category-container label {
+    justify-self: center;
+    font-size: 1.8rem;
+  }
+  .category-selector {
+    font-size: 0.9rem;
+  }
+  .the-q {
+    font-size: 1rem;
+  }
+
+  #next-Q-btn,
+  .choices-btn {
+    padding: 0.8rem;
+    font-size: 0.9rem;
+  }
+}
