@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300;400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Recursive&display=swap");
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -7,8 +7,14 @@
 }
 
 body {
-  font-family: 'Nunito', sans-serif;
+  font-family: 'Recursive', sans-serif;
   font-weight: 400;
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden !important;
+  background-image: url(./../img/bg.svg);
+  background-size: cover;
 }
 
 .app {
@@ -27,14 +33,30 @@ body {
           flex-direction: column;
   width: 100vw;
   height: 100vh;
+  overflow: hidden;
 }
 
 .q-card {
   width: 420px;
-  height: 70%;
-  -webkit-box-shadow: 0px 0px 1px 0.5px #D8D8D8;
-          box-shadow: 0px 0px 1px 0.5px #D8D8D8;
-  border-radius: 10px;
+  height: 75%;
+  border-radius: 3px;
+  -webkit-box-shadow: 0px 0px 1px 0.5px #807e77;
+          box-shadow: 0px 0px 1px 0.5px #807e77;
+  background-color: #807e77;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  color: #fffbee;
 }
 
 .q-body {
@@ -94,15 +116,17 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
+  padding: 0.85rem;
   width: 70%;
-  height: 50px;
-  -webkit-box-shadow: 0px 0px 1px 0.5px #D8D8D8;
-          box-shadow: 0px 0px 1px 0.5px #D8D8D8;
-  border-radius: 10px;
+  -webkit-box-shadow: 0px 0px 1px 0.5px #807e77;
+          box-shadow: 0px 0px 1px 0.5px #807e77;
+  border-radius: 3px;
   position: relative;
-  padding: 4px;
   outline: none;
   border: none;
+  background-color: #fffbee;
+  font-size: 1rem;
+  font-weight: normal;
 }
 
 .choices-btn:hover {
@@ -112,65 +136,6 @@ body {
 .choices-btn:hover .choice-char {
   -webkit-animation: animate-chars 0.3s ease-out forwards;
           animation: animate-chars 0.3s ease-out forwards;
-}
-
-.choices-btn p {
-  margin: auto;
-  font-size: 0.9rem;
-  margin-left: 20%;
-}
-
-.choice-char {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  width: 15%;
-  height: 100%;
-  background-color: #F2CF1D;
-  border-radius: 10px 0 0 10px;
-  position: absolute;
-  left: 0;
-}
-
-@-webkit-keyframes animate-chars {
-  0% {
-    border-radius: 10px;
-  }
-  100% {
-    left: -15px;
-  }
-}
-
-@keyframes animate-chars {
-  0% {
-    border-radius: 10px;
-  }
-  100% {
-    left: -15px;
-  }
-}
-
-.choices-container .choices-btn:nth-child(2) span {
-  background-color: #F27781;
-}
-
-.choices-container .choices-btn:nth-child(3) span {
-  background-color: #18298C;
-  color: white;
-}
-
-.choices-container .choices-btn:nth-child(4) span {
-  background-color: #60C8F5;
 }
 
 .hidden {
@@ -196,7 +161,26 @@ body {
 }
 
 .home-top-section {
-  height: 30%;
+  border-radius: 3px;
+  -webkit-box-shadow: 0px 0px 1px 0.5px #807e77;
+          box-shadow: 0px 0px 1px 0.5px #807e77;
+  background-color: #fffbee;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 40%;
+  height: 65%;
+  border: solid 1px #807e77;
 }
 
 .home-bottom-section {
@@ -204,29 +188,33 @@ body {
 }
 
 .home-heading {
-  font-size: 4rem;
+  font-size: 4.5rem;
   font-weight: 300;
   margin-left: 0px;
+  margin-bottom: 100px;
+  color: #807e77;
 }
 
 .next-btn {
+  padding: 1rem;
   position: relative;
-  padding: 14px;
   border: none;
-  border-radius: 10px;
-  font-size: 1.45rem;
-  background-color: #F2CF1D;
-  font-weight: 300;
+  border-radius: 3px;
+  font-size: 1.4rem;
+  background-color: #ffe1ad;
+  color: #807e77;
   outline: none;
   -webkit-transition: bottom 3s ease-in;
   transition: bottom 3s ease-in;
+  -webkit-box-shadow: 0px 2px 0px 0px #807e77;
+          box-shadow: 0px 2px 0px 0px #807e77;
 }
 
 .next-btn:hover {
   cursor: pointer;
   bottom: 3px;
-  -webkit-box-shadow: 0px 2px 0px 0px #D8D8D8;
-          box-shadow: 0px 2px 0px 0px #D8D8D8;
+  -webkit-box-shadow: 0px 2px 0px 0px #807e77;
+          box-shadow: 0px 2px 0px 0px #807e77;
 }
 
 @-webkit-keyframes swoosh {
@@ -266,24 +254,41 @@ body {
 }
 
 .quiz-category-container {
-  padding: 50px 20px;
-  border-radius: 10px;
-  -webkit-box-shadow: 0px 0px 1px 0.5px #D8D8D8;
-          box-shadow: 0px 0px 1px 0.5px #D8D8D8;
+  margin-bottom: 100px;
+  font-size: 1.7rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 80%;
 }
 
 .quiz-category-container label {
-  font-size: 1.03rem;
+  color: #807e77;
+  -ms-grid-column-align: start;
+      justify-self: start;
 }
 
 .category-selector {
-  margin-left: 8px;
-  border-color: #D8D8D8;
-  border-radius: 5px;
+  width: 100%;
+  margin-top: 30px;
+  font-size: 1.2rem;
+  border-color: #807e77;
+  background-color: #807e77;
+  color: white;
+  border-radius: 3px;
   padding: 5px;
   font-family: inherit;
   outline: none;
-  font-size: 0.95rem;
   overflow: auto;
 }
 
@@ -292,19 +297,21 @@ body {
 }
 
 .green-btn {
-  background-color: #04BF8A;
+  background-color: #6effa9;
 }
 
 .red-btn {
-  border: solid 1.5px #F20505;
+  background-color: #ff766e;
 }
 
 #next-Q-btn {
+  padding: 18px;
   position: relative;
+  border: none;
+  border-radius: 3px;
+  background-color: #ffe1ad;
+  outline: none;
   font-size: 1.1rem;
-  background-color: #F27781;
-  -webkit-box-shadow: none;
-          box-shadow: none;
   opacity: 1;
   -webkit-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
@@ -313,8 +320,8 @@ body {
 #next-Q-btn:hover {
   cursor: pointer;
   bottom: 3px;
-  -webkit-box-shadow: 0px 2px 0px 0px #D8D8D8;
-          box-shadow: 0px 2px 0px 0px #D8D8D8;
+  -webkit-box-shadow: 0px 2px 0px 0px #807e77;
+          box-shadow: 0px 2px 0px 0px #807e77;
 }
 
 .zero-opacity {
@@ -341,11 +348,16 @@ body {
 }
 
 .result-page div {
+  border-radius: 3px;
+  -webkit-box-shadow: 0px 0px 1px 0.5px #807e77;
+          box-shadow: 0px 0px 1px 0.5px #807e77;
+  background-color: #fffbee;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -353,98 +365,81 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  height: 22%;
+  width: 40%;
+  height: 65%;
+  border: solid 1px #807e77;
 }
 
 .result-page div h2 {
   font-size: 2.6rem;
   font-weight: inherit;
+  margin-bottom: 2rem;
 }
 
 .result-page div h3 {
-  font-size: 1.5rem;
+  font-size: 1.8rem;
+  margin-bottom: 5rem;
+  color: #807e77;
+  font-weight: 300;
 }
 
-#play-again-btn {
-  background-color: #18298C;
-  color: white;
-  font-weight: inherit;
-  font-size: 1.15rem;
-}
-
-@media screen and (max-width: 700px) {
-  .home-heading {
-    font-size: 3rem;
+@media only screen and (max-width: 1200px) {
+  .home-top-section,
+  .result-page div {
+    width: 60%;
   }
-  .next-btn {
-    padding: 12px;
-    font-size: 1.3rem;
+  .q-card {
+    width: 60%;
+    height: 60%;
   }
 }
 
 @media only screen and (max-width: 600px) {
+  .home-top-section,
+  .result-page div {
+    width: 85%;
+  }
+}
+
+@media only screen and (max-width: 500px) {
   .home-heading {
-    font-size: 2rem;
-  }
-  .next-btn {
-    padding: 11px;
-    font-size: 1rem;
-  }
-  .quiz-category-container {
-    padding: 35px 15px;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-    -webkit-box-align: start;
-        -ms-flex-align: start;
-            align-items: flex-start;
-  }
-  .quiz-category-container label {
-    font-size: 1rem;
-    margin-left: 8px;
-    margin-bottom: 8px;
-  }
-  .category-selector {
-    padding: 3px;
-  }
-  .q-card {
-    width: 300px;
-  }
-  .the-q {
-    font-size: 1rem;
-    margin: 0 10%;
-  }
-  .choices-btn {
-    width: 80%;
-    height: 35px;
-    padding: 1px;
-  }
-  .choices-btn p {
-    font-size: 0.85rem;
-    margin-left: 18%;
-  }
-  #next-Q-btn {
-    font-size: 1rem;
+    font-size: 2.9rem;
+    text-align: center;
   }
   .result-page div h2 {
-    font-size: 2.1rem;
+    font-size: 2rem;
     text-align: center;
   }
   .result-page div h3 {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
   }
-  #play-again-btn {
+  .next-btn {
+    padding: 0.8rem;
     font-size: 1.1rem;
+  }
+  .home-top-section,
+  .result-page div {
+    width: 95%;
+  }
+  .q-card {
+    width: 95%;
+    height: 80%;
+  }
+  .quiz-category-container label {
+    -ms-grid-column-align: center;
+        justify-self: center;
+    font-size: 1.8rem;
+  }
+  .category-selector {
+    font-size: 0.9rem;
+  }
+  .the-q {
+    font-size: 1rem;
+  }
+  #next-Q-btn,
+  .choices-btn {
+    padding: 0.8rem;
+    font-size: 0.9rem;
   }
 }
 /*# sourceMappingURL=style.css.map */
